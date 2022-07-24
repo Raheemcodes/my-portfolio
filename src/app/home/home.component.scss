@@ -1,0 +1,147 @@
+@import '../shared/shared';
+
+#home-sect {
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-text {
+  color: var(--main-color);
+  margin: 2rem 1rem 1rem;
+  font-family: NotoSans;
+  font-size: 2.125rem;
+  font-weight: 900;
+  text-align: center;
+  @include centered();
+
+  span {
+    width: toRem(250);
+    @include display-flex();
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width: $sm) {
+      width: 100%;
+    }
+  }
+
+  img {
+    width: 1rem;
+    align-self: flex-start;
+
+    &:last-child {
+      align-self: flex-end;
+    }
+
+    @media (min-width: $sm) {
+      width: 2rem;
+    }
+  }
+}
+
+.welcome-text__extra {
+  @include display-flex();
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  span {
+    font-family: NotoSans;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--grey-40);
+  }
+
+  img {
+    width: toRem(206);
+    height: toRem(13.1);
+  }
+}
+
+.into-img__cover {
+  width: 100vw;
+  @include display-flex();
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  pointer-events: none;
+
+  img {
+    position: absolute;
+    transform: translate(-30%, 18%);
+    width: 250%;
+
+    &:last-child {
+      transform: translate(calc(-30% - 0.5rem), calc(18% - 0.3rem));
+    }
+
+    @media (min-width: $md) {
+      width: 150%;
+      transform: translate(-25%, 18%);
+      &:last-child {
+        transform: translate(calc(-25% - 0.5rem), calc(18% - 0.3rem));
+      }
+    }
+
+    @media (min-width: $lg) {
+      width: 120%;
+      transform: translate(-15%, 18%);
+      &:last-child {
+        transform: translate(calc(-15% - 0.5rem), calc(18% - 0.3rem));
+      }
+    }
+
+    @media (min-width: $xl) {
+      width: 100%;
+      transform: translate(0, 18%);
+      &:last-child {
+        transform: translate(0, calc(18% - 0.3rem));
+      }
+    }
+
+    @media (min-width: $two-xl) {
+      transform: translate(0, 15%);
+      &:last-child {
+        transform: translate(0, calc(15% - 0.3rem));
+      }
+    }
+  }
+}
+
+.down-arrow {
+  width: toRem(32);
+  position: absolute;
+  bottom: toRem(48);
+  animation: hovering 2s linear infinite;
+
+  @media (min-width: $md) {
+    bottom: toRem(64);
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes hovering {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(10%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-10%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

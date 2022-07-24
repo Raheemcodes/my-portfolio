@@ -1,0 +1,87 @@
+@import '../shared/shared';
+
+#about-sect {
+  min-height: toRem(1000);
+  align-items: flex-start;
+
+  @media (min-width: $md) {
+    min-height: toRem(812);
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  @media (min-width: $xl) {
+    padding: calc(toRem(48) + 4.8125rem) 0;
+  }
+
+  @media (min-width: $two-xl) {
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  .about-body {
+    @media (min-width: $xl) {
+      margin-left: toRem(175);
+    }
+  }
+}
+
+.picture-cover {
+  @include centered();
+  width: toRem(132);
+  background-image: url(./../../assets/picture-sm.png);
+  background-position: -50% center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: toRem(32) toRem(32) toRem(24);
+
+  @media (min-width: $xl) {
+    background-image: url(./../../assets/picture-lg.png);
+    width: floor(calc(90vw - 253 / 375 * 100vw));
+    max-width: toRem(440);
+    background-position: center;
+  }
+
+  img {
+    height: toRem(184.5);
+    margin: 0;
+
+    @media (min-width: $xl) {
+      height: floor(calc(100vw - 253 / 375 * 100vw));
+      max-height: toRem(598.7);
+    }
+  }
+}
+
+.about-content {
+  width: 100%;
+  @media (min-width: $xl) {
+    @include display-flex();
+    flex-direction: row-reverse;
+    justify-content: center;
+    // align-items: center;
+  }
+
+  .about-main__content {
+    margin-bottom: toRem(52);
+
+    @media (min-width: $md) {
+      margin-right: toRem(30);
+      margin-top: toRem(48);
+    }
+  }
+
+  p {
+    max-width: toRem(533);
+    width: floor(calc(253 / 375 * 100vw));
+    min-width: toRem(253);
+    margin: toRem(24) toRem(16);
+    font-family: NotoSans;
+    font-size: toRem(16);
+    font-weight: 500;
+    line-height: 1.69;
+    color: var(--grey-40);
+    @media (min-width: $md) {
+      font-size: toRem(18);
+      line-height: 1.5;
+    }
+  }
+}

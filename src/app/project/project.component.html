@@ -1,0 +1,144 @@
+<section id="projects-sect">
+  <div class="projects-body">
+    <h2>My Projects</h2>
+    <img class="border-bottom" src="./../assets/Vector.svg" alt="underline" />
+    <div class="projects-content">
+      <div class="projects-wrapper" #slide>
+        <article class="project">
+          <div class="project-img__cover"></div>
+          <div class="project-sub__cover">
+            <h3>Attendance Management System</h3>
+            <div class="features-cover">
+              <a target="_blank" href="https://angular.io/" class="features"
+                >Angular</a
+              >
+              <a target="_blank" href="https://expressjs.com/" class="features"
+                >ExpressJS</a
+              >
+            </div>
+          </div>
+          <p *ngIf="showStyle" class="project-desc">
+            {{ showLess(projectContent[3]) }}
+            <span (click)="showStyle = false">Show More</span>
+          </p>
+          <p *ngIf="!showStyle" class="project-desc">
+            {{ showMore(projectContent[3]) }}
+            <span (click)="showStyle = true">Show Less</span>
+          </p>
+          <div class="project-link__cover">
+            <a href="https://github.com/draco-se/YCT-Attendance-Collator" class="project-link"
+              >View Github</a
+            >
+            <a
+              href="https://yct-attendance-collator.herokuapp.com/"
+              class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-img__cover"></div>
+          <div class="project-sub__cover">
+            <h3>RoyaleBiba Makeup Store</h3>
+            <div class="features-cover">
+              <a target="_blank" href="https://angular.io/" class="features"
+                >Angular</a
+              >
+              <a target="_blank" href="https://expressjs.com/" class="features"
+                >ExpressJS</a
+              >
+            </div>
+          </div>
+          <p class="project-desc">{{ showLess(projectContent[2]) }}</p>
+          <div class="project-link__cover">
+            <a
+              href="https://github.com/draco-se/Royale-biba-shop"
+              class="project-link"
+              >View Github</a
+            >
+            <a
+              href="https://angular-shop-project.herokuapp.com/"
+              class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-img__cover"></div>
+          <div class="project-sub__cover">
+            <h3>Money-Mine</h3>
+            <div class="features-cover">
+              <a target="_blank" href="https://swiperjs.com/" class="features"
+                >SwiperJS</a
+              >
+              <a
+                target="_blank"
+                href="https://firebase.google.com/"
+                class="features"
+                >Firebase</a
+              >
+            </div>
+          </div>
+          <p class="project-desc">
+            {{ showLess(projectContent[0]) }}
+          </p>
+          <div class="project-link__cover">
+            <a
+              href="https://github.com/draco-se/First-Project"
+              class="project-link"
+              >View Github</a
+            >
+            <a
+              href="https://dream-site-407d0.web.app/index.html"
+              class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-img__cover"></div>
+          <div class="project-sub__cover">
+            <h3>Ibeemay</h3>
+            <div class="features-cover">
+              <a target="_blank" href="https://ejs.co/" class="features">EJS</a>
+              <a target="_blank" href="https://expressjs.com/" class="features"
+                >ExpressJs</a
+              >
+            </div>
+          </div>
+          <p *ngIf="showStyle" class="project-desc">
+            {{ showLess(projectContent[1]) }}
+            <span (click)="showStyle = false">Show More</span>
+          </p>
+          <p *ngIf="!showStyle" class="project-desc">
+            {{ showMore(projectContent[1]) }}
+            <span (click)="showStyle = true">Show Less</span>
+          </p>
+          <div class="project-link__cover">
+            <a
+              href="https://github.com/draco-se/Phone-store"
+              class="project-link"
+              >View Github</a
+            >
+            <a href="https://ibeemay.herokuapp.com/" class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+      </div>
+    </div>
+    <div *ngIf="currentIndex > 0 && screenWidth >= 768" class="navigation left" (click)="slideLeft()">
+      <img src="../../assets/icons/nav-arrow.svg" alt="Navigation Arrow Icon" />
+    </div>
+    <div
+      *ngIf="currentIndex < lastSlide && screenWidth >= 768"
+      class="navigation right"
+      (click)="slideRight()"
+    >
+      <img src="../../assets/icons/nav-arrow.svg" alt="Navigation Arrow Icon" />
+    </div>
+    <div class="progress-bar" #pagination>
+      <span class="progress"></span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+@import '../shared/shared';
+
+#skills-sect {
+  align-items: flex-start;
+  min-height: toRem(1000);
+
+  @media (min-width: $md) {
+    min-height: toRem(812);
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  @media (min-width: $xl) {
+    padding: calc(toRem(48) + 4.8125rem) 0;
+  }
+
+  @media (min-width: $two-xl) {
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  .skills-body {
+    @media (min-width: $xl) {
+      margin-left: toRem(175);
+    }
+  }
+}
+
+h3 {
+  font-size: toRem(18);
+  font-weight: 800;
+  color: var(--main-color);
+
+  @media (min-width: $md) {
+    font-size: toRem(24);
+  }
+}
+
+p {
+  width: floor(calc(253 / 375 * 100vw));
+  min-width: toRem(253);
+  font-size: toRem(16);
+  font-weight: 500;
+  line-height: 1.69;
+  color: var(--grey-40);
+
+  span {
+    color: var(--secondary-color);
+  }
+
+  @media (min-width: $md) {
+    font-size: toRem(18);
+    line-height: 1.5;
+  }
+}
+
+.skills-intro {
+  max-width: toRem(533);
+  margin: toRem(48) toRem(16) toRem(32);
+}
+
+.skills-content {
+  @media (min-width: $lg) {
+    @include display-flex();
+    gap: toRem(112);
+  }
+}
+
+.skills-part1 {
+  max-width: toRem(310);
+  margin: toRem(24) toRem(16);
+
+  .skills-icon {
+    width: toRem(26.7);
+    height: toRem(24.6);
+
+    @media (min-width: $md) {
+      width: toRem(33.3);
+      height: toRem(30.7);
+    }
+  }
+
+  @media (min-width: $lg) {
+    max-width: toRem(310);
+
+    p {
+      width: 100%;
+    }
+  }
+}
+
+.skills-part2 {
+  margin: toRem(24) toRem(16);
+
+  .skills-icon {
+    width: toRem(22.4);
+    height: toRem(25.6);
+
+    @media (min-width: $md) {
+      width: toRem(28);
+      height: toRem(32);
+    }
+  }
+
+  @media (min-width: $lg) {
+    width: toRem(310);
+
+    p {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../shared/shared';
+
+#contact-sect {
+  min-height: toRem(600);
+  align-items: flex-start;
+
+  @media (min-width: $md) {
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  @media (min-width: $xl) {
+    padding: calc(toRem(48) + 4.8125rem) 0;
+  }
+
+  @media (min-width: $two-xl) {
+    padding: calc(toRem(48) + 4.8125rem);
+  }
+
+  .contact-body {
+    @media (min-width: $xl) {
+      margin-left: toRem(175);
+    }
+  }
+}
+
+.contact-overview {
+  min-width: toRem(248);
+  width: floor(calc(248 / 375 * 100vw));
+  margin: toRem(48) toRem(21) toRem(32);
+  font-size: toRem(34);
+  font-weight: 800;
+  color: var(--main-color);
+
+  @media (min-width: $lg) {
+    font-size: toRem(48);
+    margin: toRem(48) toRem(16) toRem(64);
+    max-width: toRem(1002);
+  }
+}
+
+.contact-sub__overview {
+  min-width: toRem(275);
+  width: floor(calc(275 / 375 * 100vw));
+  margin: 0 0 toRem(48) toRem(16);
+  font-size: toRem(16);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--grey-40);
+
+  @media (min-width: $lg) {
+    font-size: toRem(18);
+  }
+}
+
+a {
+  margin: 0 0 toRem(48) toRem(16);
+}

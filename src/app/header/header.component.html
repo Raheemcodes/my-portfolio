@@ -1,0 +1,91 @@
+<div class="backdrop" #backdrop (click)="closeNav()"></div>
+
+<div class="main-header">
+  <a href="/#"
+    ><img
+      class="logo"
+      src="../../assets/icons/ARAY.svg"
+      alt="A web porfolio logo"
+  /></a>
+
+  <div class="icon" (click)="openNav()">
+    <div class="vector"></div>
+    <div class="vector"></div>
+    <div class="vector"></div>
+  </div>
+</div>
+
+<nav #nav class="nav-bar">
+  <img
+    class="cancel"
+    src="./../../assets/icons/cancel-icon.svg"
+    alt="A Cancel Icon"
+    (click)="closeNav()"
+  />
+  <ul class="nav-list">
+    <li
+      [ngClass]="currentHash == '#about-sect' ? 'nav-active' : ''"
+      class="nav-list__item"
+      (click)="closeNav()"
+    >
+      <a href="#about-sect">About Me</a>
+      <img
+        class="border-bottom"
+        src="./../../assets/Vector.svg"
+        alt="underline"
+      />
+    </li>
+    <li
+      [ngClass]="currentHash == '#skills-sect' ? 'nav-active' : ''"
+      class="nav-list__item"
+      (click)="closeNav()"
+    >
+      <a href="#skills-sect">My Skill Sets</a>
+
+      <img
+        class="border-bottom"
+        src="./../../assets/Vector.svg"
+        alt="underline"
+      />
+    </li>
+    <li
+      [ngClass]="currentHash == '#projects-sect' ? 'nav-active' : ''"
+      class="nav-list__item"
+      (click)="closeNav()"
+    >
+      <a href="#projects-sect">My Project</a>
+
+      <img
+        class="border-bottom"
+        src="./../../assets/Vector.svg"
+        alt="underline"
+      />
+    </li>
+    <li
+      [ngClass]="currentHash == '#contact-sect' ? 'nav-active' : ''"
+      class="nav-list__item"
+      (click)="closeNav()"
+    >
+      <a href="#contact-sect">Contact Me</a>
+      <img
+        class="border-bottom"
+        src="./../../assets/Vector.svg"
+        alt="underline"
+      />
+    </li>
+  </ul>
+</nav>
+
+<div class="socials-cover">
+  <a
+    href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQG_LDjTB5lqxAAAAYFVzi_oER890lDPvsRzw8MNl0Kz0rlihTq6hE_99zge1FKcvaq5AyskJOPlltaiOjj6Coe6Kv73WPABz0IS34cbrYF3YtOVrdz_hC9sithpSwf6hNM-lWc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fabdulraheem-yusuf-b99bb1234"
+  >
+    <img src="../assets/icons/linked-in.svg" alt="LinkedIn Icon" />
+  </a>
+  <a href="https://github.com/draco-se"
+    ><img src="../assets/icons/git.svg" alt="Github Icon"
+  /></a>
+  <a href="https://twitter.com/raheemscorp?s=20&t=7mtcCzsfzRE810cRUiSypg">
+    <img src="../assets/icons/twitter.svg" alt="Twitter Icon" />
+  </a>
+</div>

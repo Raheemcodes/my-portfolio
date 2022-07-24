@@ -1,0 +1,52 @@
+{
+  "name": "web-portfolio",
+  "short_name": "web-portfolio",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/icon-40x40.jpg",
+      "sizes": "40x40",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+    ,
+    {
+      "src": "assets/icons/icon-60x60.jpg",
+      "sizes": "60x60",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+    ,
+    {
+      "src": "assets/icons/icon-80-80.jpg",
+      "sizes": "80x80",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+    ,
+    {
+      "src": "assets/icons/icon-120x120.jpg",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+    ,
+    {
+      "src": "assets/icons/icon-160x160.jpg",
+      "sizes": "160x160",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+    ,
+    {
+      "src": "assets/icons/icon-512x512.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

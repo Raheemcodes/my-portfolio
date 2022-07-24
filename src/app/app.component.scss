@@ -1,0 +1,25 @@
+@import './shared/shared';
+
+.loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  @include centered();
+  z-index: 20;
+  background-image: url(../assets/background-img.svg);
+  background-color: #fff;
+
+  img {
+    animation: rotate 1s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateZ(0);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}

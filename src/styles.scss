@@ -1,1 +1,139 @@
 /* You can add global styles to this file, and also import other style files */
+@import './app/shared/shared';
+
+@font-face {
+  font-family: NotoSans;
+  src: local(NotoSans-Medium),
+    url(./assets/fonts/NotoSans/NotoSans-Medium.ttf) format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NotoSans;
+  src: local(NotoSans-ExtraBold),
+    url(./assets/fonts/NotoSans/NotoSans-ExtraBold.ttf) format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NotoSans;
+  src: local(NotoSans-Black),
+    url(./assets/fonts/NotoSans/NotoSans-Black.ttf) format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NotoSans-Display;
+  src: local(NotoSans-DisplaySemiBold),
+    url(./assets/fonts/NotoSans-Display/static/NotoSansDisplay/NotoSansDisplay-SemiBold.ttf)
+      format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+// document.documentElement.style.setProperty('--main-color', '#f4f4f4') to change theme with localStorage
+// document.styleSheets[1].insertRule(":root{--main-color:#4444FF}") best method
+$main-color: #24252d;
+// $secondary-color: lighten($main-color, 16%);
+// $tertiary-color: darken($main-color, 7%);
+// $border-default: 0.125rem solid var(--main-color);
+
+:root {
+  --app-height: 100%;
+  --main-color: #{$main-color};
+  --secondary-color: #ff5c00;
+  --grey-10: #121317;
+  --grey-30: #363744;
+  --grey-40: #484959;
+  --grey-50: #6d6f88;
+  --grey-60: #999bad;
+  --grey-70: #c6c7d2;
+  --grey-80: #dddee4;
+  --grey-90: #f4f4f6;
+  --grey-100: #fdfdfe;
+  --grey-10-overlay: rgba(18, 19, 23, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+
+  &:focus {
+    outline: none;
+  }
+
+  a {
+    text-decoration: none;
+    // color: #003200;
+  }
+
+  // button {
+  //   cursor: pointer;
+  // }
+}
+
+body {
+  font-family: NotoSans;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-image: url('./assets/background-img.svg');
+}
+
+.contact-me {
+  background-color: var(--grey-10);
+  padding: toRem(16) toRem(24);
+  border: none;
+  border-radius: toRem(4);
+  cursor: pointer;
+  font-family: NotoSans-Display;
+  font-size: toRem(18);
+  font-weight: 600;
+  color: var(--grey-90);
+}
+
+section {
+  @include centered();
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: toRem(812);
+  width: 100vw;
+  height: 100vh;
+  padding: 4.8125rem 0 0;
+  background-image: url('./assets/background-img.svg');
+  background-color: #ffffff;
+
+  h2 {
+    font-family: NotoSans;
+    font-size: toRem(24);
+    font-weight: 800;
+    color: var(--main-color);
+    margin: toRem(32) 0 0 toRem(16);
+
+    @media (min-width: $md) {
+      font-size: toRem(34);
+    }
+  }
+
+  .border-bottom {
+    width: toRem(123);
+    height: toRem(8.44);
+    margin: toRem(8) 0 0 toRem(16);
+
+    @media (min-width: $md) {
+      width: toRem(167);
+      height: toRem(11.5);
+    }
+  }
+}
