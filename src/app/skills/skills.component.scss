@@ -1,4 +1,4 @@
-@import '../shared/shared';
+@import "../shared/shared";
 
 #skills-sect {
   align-items: flex-start;
@@ -70,11 +70,12 @@ p {
 
   .skills-icon {
     width: toRem(26.7);
-    height: toRem(24.6);
+    height: auto;
+    aspect-ratio: 27 / 25;
 
     @media (min-width: $md) {
       width: toRem(33.3);
-      height: toRem(30.7);
+      height: auto;
     }
   }
 
@@ -93,10 +94,11 @@ p {
   .skills-icon {
     width: toRem(22.4);
     height: toRem(25.6);
+    aspect-ratio: 27 / 25;
 
     @media (min-width: $md) {
       width: toRem(28);
-      height: toRem(32);
+      height: auto;
     }
   }
 

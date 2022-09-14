@@ -1,11 +1,17 @@
 <section id="projects-sect">
   <div class="projects-body">
     <h2>My Projects</h2>
-    <img class="border-bottom" src="./../assets/Vector.svg" alt="underline" />
+    <img
+      width="123"
+      height="8.44"
+      class="border-bottom lazy"
+      data-src="./../assets/Vector.svg"
+      data-alt="underline"
+    />
     <div class="projects-content">
       <div class="projects-wrapper" #slide>
         <article class="project">
-          <div class="project-img__cover"></div>
+          <div class="project-img__cover lazy"></div>
           <div class="project-sub__cover">
             <h3>Attendance Management System</h3>
             <div class="features-cover">
@@ -18,15 +24,17 @@
             </div>
           </div>
           <p *ngIf="showStyle" class="project-desc">
-            {{ showLess(projectContent[3]) }}
+            {{ showLess(projectContent[5]) }}
             <span (click)="showStyle = false">Show More</span>
           </p>
           <p *ngIf="!showStyle" class="project-desc">
-            {{ showMore(projectContent[3]) }}
+            {{ showMore(projectContent[5]) }}
             <span (click)="showStyle = true">Show Less</span>
           </p>
           <div class="project-link__cover">
-            <a href="https://github.com/draco-se/YCT-Attendance-Collator" class="project-link"
+            <a
+              href="https://github.com/Raheemcodes/YCT-Attendance-Collator"
+              class="project-link"
               >View Github</a
             >
             <a
@@ -37,7 +45,73 @@
           </div>
         </article>
         <article class="project">
-          <div class="project-img__cover"></div>
+          <div class="project-img__cover lazy"></div>
+          <div class="project-sub__cover">
+            <h3>Date Picker</h3>
+            <div class="features-cover">
+              <a
+                target="_blank"
+                href="https://www.typescriptlang.org/"
+                class="features"
+                >Typescript</a
+              >
+              <a target="_blank" href="https://webpack.js.org/" class="features"
+                >Webpack</a
+              >
+            </div>
+          </div>
+          <p *ngIf="showStyle" class="project-desc">
+            {{ showLess(projectContent[4]) }}
+            <span (click)="showStyle = false">Show More</span>
+          </p>
+          <p *ngIf="!showStyle" class="project-desc">
+            {{ showMore(projectContent[4]) }}
+            <span (click)="showStyle = true">Show Less</span>
+          </p>
+          <div class="project-link__cover">
+            <a
+              href="https://github.com/Raheemcodes/date-picker"
+              class="project-link"
+              >View Github</a
+            >
+            <a
+              href="https://stackblitz.com/edit/js-vksjbe?file=index.js"
+              class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-img__cover lazy"></div>
+          <div class="project-sub__cover">
+            <h3>Squidward</h3>
+            <div class="features-cover">
+              <a target="_blank" href="https://sass-lang.com/" class="features"
+                >SCSS</a
+              >
+              <a target="_blank" href="https://webpack.js.org/" class="features"
+                >Webpack</a
+              >
+            </div>
+          </div>
+          <p class="project-desc">
+            {{ showLess(projectContent[3]) }}
+          </p>
+          <div class="project-link__cover">
+            <a
+              href="https://github.com/Raheemcodes/squidward"
+              class="project-link"
+              >View Github</a
+            >
+            <a
+              href="https://stackblitz.com/edit/js-vksjbe?file=index.js"
+              class="project-link"
+              >View Website</a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-img__cover lazy"></div>
           <div class="project-sub__cover">
             <h3>RoyaleBiba Makeup Store</h3>
             <div class="features-cover">
@@ -52,7 +126,7 @@
           <p class="project-desc">{{ showLess(projectContent[2]) }}</p>
           <div class="project-link__cover">
             <a
-              href="https://github.com/draco-se/Royale-biba-shop"
+              href="https://github.com/Raheemcodes/Royale-biba-shop"
               class="project-link"
               >View Github</a
             >
@@ -64,7 +138,7 @@
           </div>
         </article>
         <article class="project">
-          <div class="project-img__cover"></div>
+          <div class="project-img__cover lazy"></div>
           <div class="project-sub__cover">
             <h3>Money-Mine</h3>
             <div class="features-cover">
@@ -84,7 +158,7 @@
           </p>
           <div class="project-link__cover">
             <a
-              href="https://github.com/draco-se/First-Project"
+              href="https://github.com/Raheemcodes/First-Project"
               class="project-link"
               >View Github</a
             >
@@ -96,7 +170,7 @@
           </div>
         </article>
         <article class="project">
-          <div class="project-img__cover"></div>
+          <div class="project-img__cover lazy"></div>
           <div class="project-sub__cover">
             <h3>Ibeemay</h3>
             <div class="features-cover">
@@ -116,7 +190,7 @@
           </p>
           <div class="project-link__cover">
             <a
-              href="https://github.com/draco-se/Phone-store"
+              href="https://github.com/Raheemcodes/Phone-store"
               class="project-link"
               >View Github</a
             >
@@ -127,17 +201,29 @@
         </article>
       </div>
     </div>
-    <div *ngIf="currentIndex > 0 && screenWidth >= 768" class="navigation left" (click)="slideLeft()">
-      <img src="../../assets/icons/nav-arrow.svg" alt="Navigation Arrow Icon" />
+    <div
+      *ngIf="currentIndex > 0 && screenWidth >= 768"
+      class="navigation left"
+      (click)="slideLeft()"
+    >
+      <img
+        src="../../assets/icons/nav-arrow.svg"
+        data-alt="Navigation Arrow Icon"
+        loading="lazy"
+      />
     </div>
     <div
       *ngIf="currentIndex < lastSlide && screenWidth >= 768"
       class="navigation right"
       (click)="slideRight()"
     >
-      <img src="../../assets/icons/nav-arrow.svg" alt="Navigation Arrow Icon" />
+      <img
+        src="../../assets/icons/nav-arrow.svg"
+        data-alt="Navigation Arrow Icon"
+        loading="lazy"
+      />
     </div>
-    <div class="progress-bar" #pagination>
+    <div *ngIf="screenWidth >= 768" class="progress-bar" #pagination>
       <span class="progress"></span>
     </div>
   </div>

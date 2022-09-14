@@ -1,46 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/shared/shared';
-
-@font-face {
-  font-family: NotoSans;
-  src: local(NotoSans-Medium),
-    url(./assets/fonts/NotoSans/NotoSans-Medium.ttf) format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: NotoSans;
-  src: local(NotoSans-ExtraBold),
-    url(./assets/fonts/NotoSans/NotoSans-ExtraBold.ttf) format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-stretch: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: NotoSans;
-  src: local(NotoSans-Black),
-    url(./assets/fonts/NotoSans/NotoSans-Black.ttf) format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-stretch: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: NotoSans-Display;
-  src: local(NotoSans-DisplaySemiBold),
-    url(./assets/fonts/NotoSans-Display/static/NotoSansDisplay/NotoSansDisplay-SemiBold.ttf)
-      format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  font-display: swap;
-}
+@import "./app/shared/shared";
 
 // document.documentElement.style.setProperty('--main-color', '#f4f4f4') to change theme with localStorage
 // document.styleSheets[1].insertRule(":root{--main-color:#4444FF}") best method
@@ -63,6 +22,8 @@ $main-color: #24252d;
   --grey-90: #f4f4f6;
   --grey-100: #fdfdfe;
   --grey-10-overlay: rgba(18, 19, 23, 0.5);
+  --NotoSans: "Noto Sans", sans-serif;
+  --NotoSans-Display: "Noto Sans Display", sans-serif;
 }
 
 * {
@@ -75,20 +36,32 @@ $main-color: #24252d;
 
   a {
     text-decoration: none;
-    // color: #003200;
   }
 
-  // button {
-  //   cursor: pointer;
-  // }
+  img.lazy {
+    display: flex;
+    position: relative;
+  }
 }
 
 body {
-  font-family: NotoSans;
+  font-family: var(--NotoSans);
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background-image: url('./assets/background-img.svg');
+  background-color: #fff;
+}
+
+.bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url("./assets/background-img.svg");
 }
 
 .contact-me {
@@ -97,7 +70,7 @@ body {
   border: none;
   border-radius: toRem(4);
   cursor: pointer;
-  font-family: NotoSans-Display;
+  font-family: var(--NotoSans-Display);
   font-size: toRem(18);
   font-weight: 600;
   color: var(--grey-90);
@@ -107,15 +80,13 @@ section {
   @include centered();
   flex-direction: column;
   justify-content: flex-start;
-  min-height: toRem(812);
+  min-height: toRem(800);
   width: 100vw;
   height: 100vh;
   padding: 4.8125rem 0 0;
-  background-image: url('./assets/background-img.svg');
-  background-color: #ffffff;
 
   h2 {
-    font-family: NotoSans;
+    font-family: var(--NotoSans);
     font-size: toRem(24);
     font-weight: 800;
     color: var(--main-color);
@@ -128,12 +99,19 @@ section {
 
   .border-bottom {
     width: toRem(123);
-    height: toRem(8.44);
+    height: auto;
     margin: toRem(8) 0 0 toRem(16);
+    aspect-ratio: 302 / 22;
 
     @media (min-width: $md) {
       width: toRem(167);
-      height: toRem(11.5);
+      height: auto;
     }
   }
+}
+
+.lazy {
+  background: none;
+  background-image: none;
+  background-color: var(--grey-90);
 }

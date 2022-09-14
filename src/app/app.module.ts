@@ -27,14 +27,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
-    RouterModule.forRoot(
-      [
-        { path: '', component: HomeComponent },
-        { path: 'not-found', component: NotFoundComponent },
-        { path: '**', redirectTo: '/not-found' },
-      ],
-    ),
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'not-found', component: NotFoundComponent },
+      { path: '**', redirectTo: '/not-found' },
+    ]),
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

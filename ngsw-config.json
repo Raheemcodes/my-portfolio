@@ -12,6 +12,10 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.gstatic.com/**",
+          "https://fonts.googleapis.com/**"
         ]
       }
     },

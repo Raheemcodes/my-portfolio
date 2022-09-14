@@ -1,4 +1,4 @@
-@import '../shared/shared';
+@import "../shared/shared";
 
 .backdrop {
   display: none;
@@ -21,6 +21,7 @@
   z-index: 2;
   top: 0;
   left: 0;
+  right: 0;
   background-image: url(./../../assets/background-img.svg);
   background-color: #ffffff;
   @include display-flex();

@@ -1,13 +1,13 @@
-@import './shared/shared';
+@import "./shared/shared";
 
 .loader {
   position: fixed;
   width: 100vw;
   height: 100vh;
   @include centered();
-  z-index: 20;
   background-image: url(../assets/background-img.svg);
   background-color: #fff;
+  z-index: 20;
 
   img {
     animation: rotate 1s linear infinite;

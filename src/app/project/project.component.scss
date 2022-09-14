@@ -3,9 +3,9 @@
 #projects-sect {
   align-items: flex-start;
   height: auto;
-  min-height: toRem(1009);
 
   @media (min-width: $md) {
+    min-height: toRem(812);
     height: 100vh;
     padding: calc(toRem(48) + 4.8125rem);
   }
@@ -39,6 +39,10 @@
       &:active {
         transform: scale(1.5);
       }
+
+      img {
+        width: 80%;
+      }
     }
 
     .left {
@@ -53,7 +57,7 @@
     @media (min-width: $md) {
       .left {
         transform: rotateZ(180deg);
-        left: -3.5rem;
+        left: -4.5rem;
 
         &:hover,
         &:active {
@@ -62,7 +66,7 @@
       }
 
       .right {
-        right: -3rem;
+        right: -4.5rem;
       }
     }
   }
@@ -84,9 +88,15 @@ h2 {
   @include display-flex();
   width: 100%;
   flex-direction: column;
+  -webkit-transition: transform 300ms ease-out;
+  -moz-trantransition: transform 300ms ease-out;
+  -o-trantransition: transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  gap: toRem(16);
+  transform: translateX(1.11%);
 
   @media (min-width: $md) {
-    width: 360%;
+    width: 540%;
     flex-direction: row;
   }
 }
@@ -97,10 +107,14 @@ h2 {
 
 .project {
   width: 100%;
-  margin: toRem(48) toRem(16) toRem(30) 0;
+  margin: toRem(48) 0 toRem(30) 0;
 
   @media (min-width: $md) {
     width: 25%;
+  }
+
+  &:first-child {
+    margin-left: 0;
   }
 
   &:last-child {
@@ -109,20 +123,67 @@ h2 {
 
   &:nth-child(2) {
     .project-img__cover {
-      background: url(./../../assets/project-img/royalebiba.png);
-      background-position: 20% toRem(-3);
+      background: url(./../../assets/project-img/date-picker.png);
+      background-position: left top;
+      background-color: var(--grey-90);
+    }
+
+    .lazy {
+      background: none;
+      background-image: none;
+      background-color: var(--grey-90);
     }
   }
   &:nth-child(3) {
     .project-img__cover {
-      background: url(./../../assets/project-img/dream-site.png);
-      background-size: cover;
+      background: url(./../../assets/project-img/squidward.png);
+      background-position: center top;
+      background-color: var(--grey-90);
+    }
+
+    .lazy {
+      background: none;
+      background-image: none;
+      background-color: var(--grey-90);
     }
   }
   &:nth-child(4) {
     .project-img__cover {
+      background: url(./../../assets/project-img/royalebiba.png);
+      background-position: 20% toRem(-3);
+      background-color: var(--grey-90);
+    }
+
+    .lazy {
+      background: none;
+      background-image: none;
+      background-color: var(--grey-90);
+    }
+  }
+  &:nth-child(5) {
+    .project-img__cover {
+      background: url(./../../assets/project-img/dream-site.png);
+      background-size: cover;
+      background-color: var(--grey-90);
+    }
+
+    .lazy {
+      background: none;
+      background-image: none;
+      background-color: var(--grey-90);
+    }
+  }
+  &:nth-child(6) {
+    .project-img__cover {
       background: url(./../../assets/project-img/ibeemay.png);
       background-position: 13% toRem(-3);
+      background-color: var(--grey-90);
+    }
+
+    .lazy {
+      background: none;
+      background-image: none;
+      background-color: var(--grey-90);
     }
   }
 
@@ -133,6 +194,13 @@ h2 {
     height: toRem(383);
     border-top-left-radius: toRem(8);
     border-top-right-radius: toRem(8);
+    background-color: var(--grey-90);
+  }
+
+  .lazy {
+    background: none;
+    background-image: none;
+    background-color: var(--grey-90);
   }
 }
 
@@ -225,7 +293,7 @@ h2 {
   background-color: var(--grey-80);
 
   .progress {
-    width: 25%;
+    width: floor(calc(100% / 6));
     height: toRem(2);
     background-color: var(--secondary-color);
     margin: 0;

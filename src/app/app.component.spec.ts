@@ -1,31 +1,84 @@
-import { TestBed } from '@angular/core/testing';
+import {
+  fakeAsync,
+  TestBed,
+  tick,
+  ComponentFixture,
+} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'web-portfolio'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('web-portfolio');
+  it('should not display loader if loaded', () => {
+    app.loaded = true;
+    fixture.detectChanges();
+
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.loader')).toBeFalsy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should display loader if not loaded', () => {
+    app.loaded = false;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('web-portfolio app is running!');
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('.loader')).toBeTruthy();
+  });
+
+  it('should change load property from false to true after 3000ms', fakeAsync(() => {
+    const beforeExec = app.loaded;
+
+    app.ngOnInit();
+    fixture.detectChanges();
+    tick(3000);
+    const afterExec = app.loaded;
+
+    expect(beforeExec).toBeFalse();
+    expect(afterExec).toBeTrue();
+  }));
+
+  describe('appHeight()', () => {
+    it('should be executed', () => {
+      const appHeight = spyOn(app, 'appHeight');
+
+      fixture.detectChanges();
+
+      expect(appHeight).toHaveBeenCalled();
+    });
+
+    it('should add css varaiable of --app-height', () => {
+      const appHeight = `${window.innerHeight / 16}rem`;
+
+      fixture.detectChanges();
+      const value =
+        document.documentElement.style.getPropertyValue('--app-height');
+
+      expect(value).toBe(appHeight);
+    });
+
+    it('should have been called twice on onrezie', () => {
+      const appHeight = spyOn(app, 'appHeight');
+
+      fixture.detectChanges(); // to register the event call it in ngOnInIt
+      window.dispatchEvent(new Event('resize')); // trigger the event
+
+      expect(appHeight).toHaveBeenCalledTimes(2);
+    });
   });
 });

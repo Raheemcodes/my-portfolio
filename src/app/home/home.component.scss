@@ -1,14 +1,19 @@
-@import '../shared/shared';
+@import "../shared/shared";
 
 #home-sect {
   position: relative;
   overflow: hidden;
+
+  @media (min-width: $md) {
+    min-height: toRem(812);
+    padding-top: calc(toRem(24) + 4.8125rem);
+  }
 }
 
 .welcome-text {
   color: var(--main-color);
   margin: 2rem 1rem 1rem;
-  font-family: NotoSans;
+  font-family: var(--NotoSans);
   font-size: 2.125rem;
   font-weight: 900;
   text-align: center;
@@ -47,7 +52,7 @@
   padding: 1rem;
 
   span {
-    font-family: NotoSans;
+    font-family: var(--NotoSans);
     font-size: 1rem;
     font-weight: 500;
     color: var(--grey-40);
@@ -112,7 +117,7 @@
 .down-arrow {
   width: toRem(32);
   position: absolute;
-  bottom: toRem(48);
+  bottom: toRem(64);
   animation: hovering 2s linear infinite;
 
   @media (min-width: $md) {
