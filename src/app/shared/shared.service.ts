@@ -17,7 +17,7 @@ export class SharedService {
             if (entry.isIntersecting) {
               const image = entry.target as any;
               image.src = image.dataset.src;
-              // image.alt = image.dataset.alt;
+              image.alt = image.dataset.alt;
               image.classList.remove('lazy');
               imageObserver.unobserve(image);
             }

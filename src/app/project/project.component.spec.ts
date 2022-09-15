@@ -1,9 +1,4 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProjectComponent } from './project.component';
 
@@ -55,7 +50,7 @@ describe('ProjectComponent', () => {
     });
 
     it('projectContent should be an array of length 4', () => {
-      expect(component.projectContent.length).toBe(4);
+      expect(component.projectContent.length).toBe(6);
     });
 
     it('screenWidth should be yeild value of screen size', () => {
@@ -66,15 +61,15 @@ describe('ProjectComponent', () => {
       expect(component.isDragging).toBeFalse();
     });
 
-    it('startPos | startPosY | currentIndex | currentIndex should be yeild value of 0', () => {
+    it('startPos | startPosY | currentIndex should be yeild value of 0', () => {
       expect(component.startPos).toBe(0);
       expect(component.startPosY).toBe(0);
-      expect(component.prevTranslate).toBe(0);
       expect(component.currentIndex).toBe(0);
     });
 
-    it('lastSlide should be index of the last element in projectsContent[]', () => {
-      expect(component.lastSlide).toBe(component.projectContent.length - 1);
+    it('lastSlide | PrevTranslate should be undefined', () => {
+      expect(component.prevTranslate).toBeUndefined();
+      expect(component.lastSlide).toBeUndefined();
     });
 
     it('showStyle to be yeild value true', () => {
@@ -120,13 +115,13 @@ describe('ProjectComponent', () => {
     it('threshold should be the width of the slider parent', () => {
       const parent = fixture.debugElement.query(By.css('.projects-content'));
 
-      expect(component.threshold).toBe(parent.nativeElement.clientWidth);
+      expect(component.threshold).toBe(parent.nativeElement.clientWidth / 6);
     });
   });
 
   describe('showLess()', () => {
     it('should yeild string of length 183 if argument of length > 183', () => {
-      const text = component.projectContent[3];
+      const text = component.projectContent[5];
 
       const result = component.showLess(text);
 
@@ -144,7 +139,7 @@ describe('ProjectComponent', () => {
 
   describe('showMore()', () => {
     it('should yeild same string of argument passed if its of length > 183', () => {
-      const text = component.projectContent[3];
+      const text = component.projectContent[5];
 
       const result = component.showMore(text);
 
@@ -206,15 +201,6 @@ describe('ProjectComponent', () => {
       fixture.detectChanges();
 
       expect(touchstart).toHaveBeenCalledTimes(2);
-    });
-
-    it('slider should be style.transition of none', () => {
-      const slider = fixture.debugElement.query(
-        By.css('.projects-wrapper')
-      ).nativeElement;
-      component.onTouchStart(mockMouse, 2);
-
-      expect(slider.style.transition).toEqual('none 0s ease 0s');
     });
 
     it('getPositionX() should be called', () => {
@@ -386,7 +372,7 @@ describe('ProjectComponent', () => {
 
     it('currentIndex should increase', () => {
       component.currentIndex = 1;
-      component.lastSlide = 3;
+      component.lastSlide = 5;
 
       component.slideRight();
 
@@ -396,14 +382,14 @@ describe('ProjectComponent', () => {
     });
 
     it('currentIndex should be constanst', () => {
-      component.currentIndex = 3;
-      component.lastSlide = 3;
+      component.currentIndex = component.lastSlide;
+      const initialIdx: number = component.currentIndex;
 
       component.slideRight();
 
       expect(component.currentIndex)
         .withContext('if it is >= last slide index')
-        .toBe(3);
+        .toBe(initialIdx);
     });
 
     it('setPositionByIndex() should be called', () => {
@@ -419,8 +405,8 @@ describe('ProjectComponent', () => {
     });
 
     it('setPositionByIndex() should not be called', () => {
-      component.currentIndex = 3;
-      component.lastSlide = 3;
+      component.currentIndex = component.lastSlide;
+
       const setPositionByIndex = spyOn(component, 'setPositionByIndex');
 
       component.slideRight();
@@ -497,8 +483,8 @@ describe('ProjectComponent', () => {
 
   describe('setPositionByIndex()', () => {
     beforeEach(() => {
+      component.screenWidth = 768;
       fixture.detectChanges();
-      innerWidth = 768;
     });
 
     it('should call setSliderPosition()', () => {
@@ -509,7 +495,7 @@ describe('ProjectComponent', () => {
     });
 
     it('currentTranslate should be 0', () => {
-      innerWidth = 767;
+      component.screenWidth = 767;
       component.setPositionByIndex();
 
       expect(component.currentTranslate)
@@ -517,60 +503,57 @@ describe('ProjectComponent', () => {
         .toBe(0);
     });
 
-    it('threshold should be 1/4 of the slider width', () => {
+    it('threshold should be 1/4 of the slider parent width', () => {
       const slider = fixture.debugElement.query(By.css('.projects-wrapper'));
       component.setPositionByIndex();
-      expect(component.threshold).toBe(slider.nativeElement.clientWidth / 4);
+      expect(component.threshold).toBe(
+        slider.nativeElement.parentElement.clientWidth / 6
+      );
     });
 
-    it('currentTranslate should be 0', () => {
+    it('currentTranslate should equal initialTranslate', () => {
+      component.screenWidth = 768;
       component.currentIndex = 0;
-      const currentIndex = component.currentIndex;
+      const initialTranslate = component.initialTranslate;
 
       component.setPositionByIndex();
-      const threshold = component.threshold;
 
       expect(component.currentTranslate)
         .withContext('if curIdx is 0')
-        .toBe(currentIndex * -threshold);
+        .toBe(initialTranslate);
     });
 
     it('currentTranslate should be < 0', () => {
+      component.screenWidth = 768;
       component.currentIndex = 1;
       const currentIndex = component.currentIndex;
+      const initialTranslate = component.initialTranslate;
+      const slideWidth = component.slideWidth;
+      component.currentTranslate = initialTranslate;
 
       component.setPositionByIndex();
-      const threshold = component.threshold;
+
       expect(component.currentTranslate)
-        .withContext('if 0 < curIdx < 3')
-        .toBe(currentIndex * -threshold - -threshold * 0.05);
+        .withContext('if 0 < curIdx < 5')
+        .toBe(initialTranslate + currentIndex * -slideWidth);
     });
 
     it('currentTranslate should be < 0', () => {
-      component.currentIndex = 3;
+      component.currentIndex = component.lastSlide;
       const currentIndex = component.currentIndex;
+      const initialTranslate = component.initialTranslate;
+      const slideWidth = component.slideWidth;
 
       component.setPositionByIndex();
-      const threshold = component.threshold;
+
       expect(component.currentTranslate)
-        .withContext('if curIdx is 3')
-        .toBe(currentIndex * -threshold - -threshold * 0.1);
+        .withContext('if curIdx is in lastSlide')
+        .toBe(initialTranslate + currentIndex * -slideWidth);
     });
 
     it('prevTranslate should be currentTranslate', () => {
       component.setPositionByIndex();
       expect(component.prevTranslate).toBe(component.currentTranslate);
-    });
-
-    it('prevTranslate should not be currentTranslate', () => {
-      innerWidth = 767;
-      component.currentTranslate = -300;
-      component.prevTranslate = -400;
-
-      component.setPositionByIndex();
-      expect(component.prevTranslate)
-        .withContext('innerWidth suddenly < 768')
-        .not.toBe(component.currentTranslate);
     });
 
     it('should increase pagination', () => {
@@ -582,8 +565,16 @@ describe('ProjectComponent', () => {
       const pagination = progressBar.nativeElement.firstElementChild;
 
       component.setPositionByIndex();
-      fixture.detectChanges();
-      expect(pagination.style.width).toBe(`${25 * 2}%`);
+
+      expect(pagination.style.width).toBe(
+        `${
+          Math.floor(
+            (100 / (component.lastSlide + 1)) *
+              (component.currentIndex + 1) *
+              10000
+          ) / 10000
+        }%`
+      );
     });
   });
 
@@ -597,10 +588,6 @@ describe('ProjectComponent', () => {
       component.currentTranslate = -300;
 
       component.setSliderPosition();
-
-      expect(compiled.styles['transition'])
-        .withContext('have style.transition attribute')
-        .toBe('transform 0.3s ease-out 0s');
 
       expect(compiled.styles['transform'])
         .withContext('have style.transform attribute')

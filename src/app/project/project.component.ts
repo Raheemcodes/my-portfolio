@@ -31,7 +31,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   startPosY: number = 0;
   currentTranslate: number = 0;
   prevTranslate: number;
-  innitialTranslate: number;
+  initialTranslate: number;
   currentIndex: number = 0;
   slideWidth: number;
   lastSlide: number;
@@ -43,16 +43,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.slideWidth =
-      this.slider.nativeElement.firstElementChild.clientWidth + this.gap;
-    this.innitialTranslate =
-      (this.slider.nativeElement.clientWidth * 1.2) / 100;
-    this.prevTranslate = this.innitialTranslate;
-    this.threshold = this.slider.nativeElement.parentElement.clientWidth / 4;
-    this.lastSlide = this.slider.nativeElement.children.length - 1;
-    this.cd.detectChanges();
+    this.innitial();
 
     window.addEventListener('resize', () => {
+      this.innitial();
       this.screenWidth = innerWidth;
       this.setPositionByIndex();
     });
@@ -97,6 +91,16 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         if (e.key == 'ArrowLeft') this.slideLeft();
       }
     });
+  }
+
+  innitial() {
+    this.slideWidth =
+      this.slider.nativeElement.firstElementChild.clientWidth + this.gap;
+    this.initialTranslate = (this.slider.nativeElement.clientWidth * 1.2) / 100;
+    this.prevTranslate = this.initialTranslate;
+    this.threshold = this.slider.nativeElement.parentElement.clientWidth / 6;
+    this.lastSlide = this.slider.nativeElement.children.length - 1;
+    this.cd.detectChanges();
   }
 
   showLess(text: string): string {
@@ -150,14 +154,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // if moved enough negative then snap to next slide if there is one
 
     if (
-      movedBy < -this.threshold / 4 &&
+      movedBy < -this.threshold &&
       this.currentIndex < this.slider.nativeElement.children.length - 1
     )
       this.currentIndex++;
 
     // if moved enough positive then snap to previous slide if there is one
-    if (movedBy > this.threshold / 4 && this.currentIndex > 0)
-      this.currentIndex--;
+    if (movedBy > this.threshold && this.currentIndex > 0) this.currentIndex--;
 
     this.setPositionByIndex();
 
@@ -171,21 +174,19 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   slideRight() {
-    if (this.currentIndex >= 6) return;
+    if (this.currentIndex >= this.lastSlide) return;
     this.currentIndex++;
     this.setPositionByIndex();
   }
 
   setPositionByIndex() {
-    if (innerWidth < 768) {
+    if (this.screenWidth < 768) {
       this.currentTranslate = 0;
     } else {
       if (this.currentIndex >= 0 && this.currentIndex <= this.lastSlide) {
         this.currentTranslate =
-          this.innitialTranslate + this.currentIndex * -this.slideWidth;
+          this.initialTranslate + this.currentIndex * -this.slideWidth;
       }
-
-      this.prevTranslate = this.currentTranslate;
 
       if (this.progressBar)
         this.progressBar.nativeElement.firstElementChild.setAttribute(
@@ -193,6 +194,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
           `width: ${(100 / (this.lastSlide + 1)) * (this.currentIndex + 1)}%`
         );
     }
+    this.prevTranslate = this.currentTranslate;
     this.setSliderPosition();
   }
 

@@ -17,11 +17,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    setTimeout(this.sharedService.lazyLoading, 1);
-    document.addEventListener(
-      'DOMContentLoaded',
-      this.sharedService.lazyLoading
-    );
+    this.sharedService.lazyLoading();
   }
 
   changeUrl() {
