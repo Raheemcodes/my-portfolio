@@ -511,16 +511,14 @@ describe('ProjectComponent', () => {
       );
     });
 
-    it('currentTranslate should equal initialTranslate', () => {
+    it('currentTranslate should be zero', () => {
       component.screenWidth = 768;
       component.currentIndex = 0;
       const initialTranslate = component.initialTranslate;
 
       component.setPositionByIndex();
 
-      expect(component.currentTranslate)
-        .withContext('if curIdx is 0')
-        .toBe(initialTranslate);
+      expect(component.currentTranslate).withContext('if curIdx is 0').toBe(0);
     });
 
     it('currentTranslate should be < 0', () => {
@@ -548,7 +546,7 @@ describe('ProjectComponent', () => {
 
       expect(component.currentTranslate)
         .withContext('if curIdx is in lastSlide')
-        .toBe(initialTranslate + currentIndex * -slideWidth);
+        .toBe(initialTranslate * 2 + currentIndex * -slideWidth);
     });
 
     it('prevTranslate should be currentTranslate', () => {

@@ -93,7 +93,7 @@ h2 {
   -o-trantransition: transform 300ms ease-out;
   transition: transform 300ms ease-out;
   gap: toRem(16);
-  transform: translateX(1.11%);
+  transform: translateX(0);
 
   @media (min-width: $md) {
     width: 540%;

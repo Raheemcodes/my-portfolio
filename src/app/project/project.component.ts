@@ -183,9 +183,18 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (this.screenWidth < 768) {
       this.currentTranslate = 0;
     } else {
-      if (this.currentIndex >= 0 && this.currentIndex <= this.lastSlide) {
+      if (this.currentIndex == 0) {
+        this.currentTranslate = this.currentIndex * -this.slideWidth;
+      }
+
+      if (this.currentIndex > 0 && this.currentIndex < this.lastSlide) {
         this.currentTranslate =
           this.initialTranslate + this.currentIndex * -this.slideWidth;
+      }
+
+      if (this.currentIndex == this.lastSlide) {
+        this.currentTranslate =
+          2 * this.initialTranslate + this.currentIndex * -this.slideWidth;
       }
 
       if (this.progressBar)
